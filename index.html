@@ -13,9 +13,9 @@
             --bg: #030105;
             --panel: rgba(20, 15, 30, 0.75);
             --gojo: #00d2ff;
-            --gojo-glow: rgba(0, 210, 255, 0.4);
+            --gojo-glow: rgba(0, 210, 255, 0.6);
             --sukuna: #ff003c;
-            --sukuna-glow: rgba(255, 0, 60, 0.4);
+            --sukuna-glow: rgba(255, 0, 60, 0.6);
             --text: #e2dcf8;
             --muted: #a499d6;
             --border: rgba(255, 255, 255, 0.1);
@@ -52,29 +52,71 @@
         }
         .nav-btn:hover { background: rgba(255,255,255,0.1); border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.3); }
 
-        /* Hero Section dengan Background Gojo vs Sukuna */
+        /* =========================================
+           HERO SECTION DENGAN EFEK AURA API
+        ========================================= */
         .hero {
             position: relative;
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
             padding: 120px 20px 50px;
-            background-image: url('bg.jpg'); /* GAMBAR GOJO VS SUKUNA */
+            background-image: url('bg.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efek Parallax */
+            background-attachment: fixed;
+            overflow: hidden; /* Penting agar efek api tidak bocor ke section lain */
         }
         
-        /* Overlay Gelap agar teks terbaca */
+        /* Overlay Gelap Dasar */
         .hero::before {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(3,1,5,0.7) 0%, rgba(3,1,5,0.9) 80%, var(--bg) 100%);
+            background: linear-gradient(to bottom, rgba(3,1,5,0.5) 0%, rgba(3,1,5,0.8) 70%, var(--bg) 100%);
             z-index: 1;
         }
 
-        .hero-content {
-            position: relative;
+        /* === EFEK API BIRU (GOJO) === */
+        .aura-gojo {
+            position: absolute;
+            top: -10%; left: -20%;
+            width: 70vw; height: 70vw;
+            background: radial-gradient(circle, var(--gojo-glow) 0%, transparent 60%);
+            filter: blur(80px);
             z-index: 2;
+            mix-blend-mode: screen;
+            animation: burnBlue 5s infinite alternate ease-in-out;
+            pointer-events: none; /* Agar tidak menghalangi klik pada teks */
+        }
+
+        /* === EFEK API MERAH (SUKUNA) === */
+        .aura-sukuna {
+            position: absolute;
+            bottom: -20%; right: -20%;
+            width: 70vw; height: 70vw;
+            background: radial-gradient(circle, var(--sukuna-glow) 0%, transparent 60%);
+            filter: blur(80px);
+            z-index: 2;
+            mix-blend-mode: screen;
+            animation: burnRed 6s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        /* Animasi Api Menyala (Membesar-mengecil & Bergeser) */
+        @keyframes burnBlue {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+            50% { transform: scale(1.1) translate(5%, 5%); opacity: 1; }
+            100% { transform: scale(1.2) translate(-5%, 10%); opacity: 0.8; }
+        }
+
+        @keyframes burnRed {
+            0% { transform: scale(1.2) translate(0, 0); opacity: 0.9; }
+            50% { transform: scale(1.1) translate(-5%, -5%); opacity: 0.7; }
+            100% { transform: scale(1) translate(5%, -10%); opacity: 1; }
+        }
+
+        /* Konten di Atas Efek Api */
+        .hero-content {
+            position: relative; z-index: 3;
             display: flex; flex-direction: column; align-items: center;
         }
 
@@ -85,12 +127,11 @@
             margin-bottom: 15px; letter-spacing: 2px;
             filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
         }
-        .hero p { color: #ccc; font-size: 16px; max-width: 650px; margin-bottom: 40px; font-weight: 600; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .hero p { color: #ddd; font-size: 16px; max-width: 650px; margin-bottom: 40px; font-weight: 600; text-shadow: 0 2px 5px rgba(0,0,0,0.9); }
         
         /* Tombol Download */
         .download-btn {
-            position: relative;
-            display: inline-flex; align-items: center; gap: 10px;
+            position: relative; display: inline-flex; align-items: center; gap: 10px;
             background: linear-gradient(135deg, #1a0b2e, #0f0518);
             border: 1px solid rgba(255,255,255,0.3);
             color: white; text-decoration: none; padding: 18px 45px;
@@ -98,13 +139,13 @@
             transition: 0.3s; box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
             overflow: hidden; z-index: 1;
         }
-        .download-btn:hover { transform: translateY(-5px); box-shadow: 0 0 30px var(--gojo-glow), 0 0 30px var(--sukuna-glow); border-color: #fff; }
+        .download-btn:hover { transform: translateY(-5px); box-shadow: 0 0 30px var(--gojo), 0 0 30px var(--sukuna); border-color: #fff; }
 
         /* Container & Sections */
-        .container { max-width: 1000px; margin: auto; padding: 60px 20px; position: relative; z-index: 1; }
+        .container { max-width: 1000px; margin: auto; padding: 60px 20px; position: relative; z-index: 1; background: var(--bg); }
         .section-title { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 900; margin-bottom: 50px; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.3); }
         
-        /* Kartu Fitur */
+        /* Features Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .card {
             background: var(--panel); border: 1px solid var(--border);
@@ -119,28 +160,42 @@
         .card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .card:hover::before { opacity: 1; height: 5px; }
         
-        .card-icon { font-size: 35px; margin-bottom: 20px; }
-        .card h3 { font-size: 20px; margin-bottom: 12px; color: #fff; font-weight: 700; }
+        /* Icon SVG Styling */
+        .icon-box {
+            width: 50px; height: 50px; border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border);
+            display: flex; justify-content: center; align-items: center;
+            margin-bottom: 20px; color: var(--gojo); transition: 0.3s;
+        }
+        .card:hover .icon-box { background: rgba(187, 134, 252, 0.1); color: var(--sukuna); border-color: var(--sukuna); }
+        .icon-box svg { width: 24px; height: 24px; stroke-width: 2; }
+
+        .card h3 { font-size: 18px; margin-bottom: 12px; color: #fff; font-weight: 700; }
         .card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+
+        /* Video Section */
+        .video-container {
+            position: relative; width: 100%; max-width: 800px; margin: auto;
+            aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden;
+            border: 2px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(187,134,252,0.1);
+            transition: 0.3s; background: #000;
+        }
+        .video-container:hover { border-color: var(--gojo); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 30px var(--gojo); }
+        .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
         /* Screenshots */
         .screenshots { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0 40px; scroll-snap-type: x mandatory; }
         .screenshots::-webkit-scrollbar { height: 8px; }
         .screenshots::-webkit-scrollbar-thumb { background: var(--sukuna); border-radius: 10px; }
-        .screenshots img { 
-            width: 260px; border-radius: 20px; border: 2px solid var(--border); 
-            scroll-snap-align: center; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .screenshots img:hover { border-color: var(--gojo); transform: scale(1.05); box-shadow: 0 0 30px var(--gojo-glow); }
+        .screenshots img { width: 260px; border-radius: 20px; border: 2px solid var(--border); scroll-snap-align: center; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .screenshots img:hover { border-color: var(--gojo); transform: scale(1.05); }
 
         /* Footer */
         footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; background: rgba(3,1,5,0.8); backdrop-filter: blur(10px); position: relative; z-index: 1; }
         footer span { color: #fff; font-weight: bold; text-shadow: 0 0 10px var(--gojo); }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 36px; }
-            .nav-brand { font-size: 18px; }
             nav { padding: 15px 20px; }
         }
     </style>
@@ -155,69 +210,75 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Elemen Efek Api -->
+        <div class="aura-gojo"></div>
+        <div class="aura-sukuna"></div>
+
         <div class="hero-content">
             <h1>lvnderrOS Optimize</h1>
-            <p>Unleash the Cursed Energy of your Android device. Experience limitless performance with Shizuku-powered optimization, inspired by the clash of the strongest.</p>
+            <p>Unleash the ultimate performance of your Android device. Experience seamless gaming with Shizuku-powered optimization, designed for speed and stability.</p>
             
             <a href="#download" class="download-btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Awaken Power
+                Download Now
             </a>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Fitur, Video, Screenshot, Download, Footer (SAMA SEPERTI SEBELUMNYA) -->
     <div class="container">
-        <h2 class="section-title">Cursed Techniques</h2>
+        <h2 class="section-title">Powerful Features</h2>
         <div class="grid">
             <div class="card">
-                <div class="card-icon">🔵</div>
-                <h3>Limitless Preloader</h3>
-                <p>Illuminati Engine memuat data game ke RAM secara instan. Loading screen? What is that? (Gojo's Infinity)</p>
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg></div>
+                <h3>Instant Game Loading</h3>
+                <p>Illuminati Engine memuat file game langsung ke RAM sebelum game dibuka. Mengurangi waktu loading secara drastis.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🔴</div>
-                <h3>Dismantle Latency</h3>
-                <p>RenderThread Booster memotong segala hambatan grafis. FPS stabil tanpa ampun saat team fight. (Sukuna's Cleave)</p>
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                <h3>Stabil FPS in Team Fight</h3>
+                <p>RenderThread Booster memprioritaskan proses grafis game. FPS tetap stabil tanpa frame drop saat pertarungan sengit.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🟣</div>
-                <h3>Hollow Purple API</h3>
-                <p>Menggabungkan Shizuku API untuk mengeksekusi tweak sistem tanpa perlu Root. Kekuatan murni tanpa merusak garansi.</p>
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                <h3>Safe Without Root</h3>
+                <p>Menggunakan API Shizuku untuk eksekusi sistem canggih. Aman, tidak merusak garansi, dan tidak memerlukan akses Root.</p>
             </div>
             <div class="card">
-                <div class="card-icon">⚫</div>
-                <h3>Domain Expansion</h3>
-                <p>Daftar game otomatis dengan ikon dan nama asli dari HP Anda. Tampilan UI premium bertema Anime Dark Edition.</p>
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+                <h3>Auto-Detect Icons</h3>
+                <p>Daftar game menampilkan ikon dan nama asli secara otomatis dari perangkat pengguna. Tampilan UI premium dan rapi.</p>
             </div>
         </div>
     </div>
 
-    <!-- Screenshots Section -->
+    <div class="container">
+        <h2 class="section-title">How To Use</h2>
+        <div class="video-container">
+            <video src="gojo.mp4" controls poster="screenshot1.jpg">
+                Browser Anda tidak mendukung pemutaran video ini.
+            </video>
+        </div>
+    </div>
+
     <div class="container">
         <h2 class="section-title">App Preview</h2>
         <div class="screenshots">
-            <!-- Gambar dari HP Anda -->
             <img src="screenshot1.jpg" alt="Home lvnderrOS">
             <img src="screenshot2.jpg" alt="Game List lvnderrOS">
         </div>
         <p style="text-align: center; font-size: 12px; color: var(--muted); margin-top: 10px;">*Geser untuk melihat preview</p>
     </div>
 
-    <!-- Download Section -->
     <div class="container" id="download" style="text-align: center; padding: 80px 20px;">
-        <h2 class="section-title">Are You The Strongest?</h2>
+        <h2 class="section-title">Ready to Optimize?</h2>
         <p style="color: var(--muted); margin-bottom: 30px;">Dapatkan versi terbaru lvnderrOS Optimize sekarang juga.</p>
-        
-        <!-- LINK MEDIAFIRE BARU ANDA SUDAH DIMASUKKAN DI SINI -->
         <a href="https://www.mediafire.com/file/1ks1j6inxo9lcwj/lvnderrOS.apk/file" class="download-btn" style="font-size: 20px; padding: 20px 60px;" target="_blank">
             Download APK
         </a>
-        
         <p style="font-size: 12px; color: #665675; margin-top: 20px;">Requires Android 10+ & Shizuku App</p>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>© 2026 <span>lvnderrOS</span>. Built with ❤️ by HKYY LAVENDERR.</p>
         <p>Beyond Limits • Anime Dark Edition</p>
