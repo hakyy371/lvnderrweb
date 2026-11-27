@@ -2,7 +2,239 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" contentss="hero">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>lvnderrOS Optimize - Beyond Limits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #030105;
+            --panel: rgba(20, 15, 30, 0.75);
+            --gojo: #00d2ff;
+            --gojo-glow: rgba(0, 210, 255, 0.8);
+            --sukuna: #ff003c;
+            --sukuna-glow: rgba(255, 0, 60, 0.8);
+            --text: #e2dcf8;
+            --muted: #a499d6;
+            --border: rgba(255, 255, 255, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; position: fixed; width: 100%; top: 0;
+            background: rgba(3, 1, 5, 0.85); backdrop-filter: blur(15px);
+            z-index: 100; border-bottom: 1px solid var(--border);
+        }
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 900;
+            background: linear-gradient(90deg, var(--gojo), #fff, var(--sukuna));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        .nav-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            color: #fff; text-decoration: none; padding: 8px 15px;
+            border-radius: 8px; font-weight: 600; font-size: 12px;
+            transition: 0.3s;
+        }
+
+        /* =========================================
+           HERO SECTION (MOBILE FRIENDLY)
+        ========================================= */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 80px 20px 40px;
+            overflow: hidden;
+        }
+
+        /* Gambar Gojo vs Sukuna Full Screen di Background */
+        .hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        /* Overlay Gelap agar tulisan terbaca */
+        .hero::after {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(3,1,5,0.6) 0%, rgba(3,1,5,0.85) 70%, var(--bg) 100%);
+            z-index: 1;
+        }
+
+        /* Efek Api Biru Gojo */
+        .aura-gojo {
+            position: absolute;
+            top: 5%; left: -20%;
+            width: 80vw; height: 60vh;
+            background: radial-gradient(circle, var(--gojo) 0%, transparent 60%);
+            filter: blur(50px);
+            mix-blend-mode: screen;
+            z-index: 2;
+            animation: fireBlue 0.15s infinite alternate;
+            pointer-events: none;
+        }
+
+        /* Efek Api Merah Sukuna */
+        .aura-sukuna {
+            position: absolute;
+            bottom: 5%; right: -20%;
+            width: 80vw; height: 60vh;
+            background: radial-gradient(circle, var(--sukuna) 0%, transparent 60%);
+            filter: blur(50px);
+            mix-blend-mode: screen;
+            z-index: 2;
+            animation: fireRed 0.2s infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes fireBlue {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+            100% { transform: scale(1.1) translate(5%, 5%); opacity: 1; }
+        }
+        @keyframes fireRed {
+            0% { transform: scale(1.1) translate(0, 0); opacity: 1; }
+            100% { transform: scale(1) translate(-5%, -5%); opacity: 0.7; }
+        }
+
+        /* Kotak Kaca (Glassmorphism) */
+        .glass-panel {
+            position: relative; z-index: 3;
+            background: rgba(15, 10, 25, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 100%; max-width: 400px; /* Pas di layar HP */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 32px; /* Ukuran pas untuk HP */
+            font-weight: 900; line-height: 1.2;
+            background: linear-gradient(90deg, var(--gojo), #fff, var(--sukuna));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 15px; letter-spacing: 1px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+        .hero p { color: #ddd; font-size: 13px; margin-bottom: 25px; font-weight: 400; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+        
+        /* Tombol Download */
+        .download-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #1a0b2e, #0f0518);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white; text-decoration: none; padding: 14px 35px;
+            border-radius: 50px; font-size: 16px; font-weight: 700;
+            transition: 0.3s; box-shadow: 0 0 15px rgba(187, 134, 252, 0.4);
+        }
+        .download-btn:active { transform: scale(0.95); }
+
+        /* Container Bawah */
+        .container { max-width: 1000px; margin: auto; padding: 40px 20px; position: relative; z-index: 5; background: var(--bg); }
+        .section-title { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 900; margin-bottom: 30px; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        
+        /* Features Grid */
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; } /* 1 Kolom di HP */
+        .card {
+            background: var(--panel); border: 1px solid var(--border);
+            padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);
+            position: relative; overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--gojo), var(--sukuna));
+            opacity: 0.7;
+        }
+        .icon-box {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border);
+            display: flex; justify-content: center; align-items: center;
+            margin-bottom: 15px; color: var(--gojo);
+        }
+        .icon-box svg { width: 20px; height: 20px; stroke-width: 2; }
+        .card h3 { font-size: 16px; margin-bottom: 8px; color: #fff; font-weight: 700; }
+        .card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+        /* =========================================
+           VIDEO SECTION (9:16 FULL WIDTH HP)
+        ========================================= */
+        .video-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 100%; /* Full lebar layar HP */
+            aspect-ratio: 9 / 16; 
+            margin: auto;
+            border-radius: 15px; 
+            overflow: hidden;
+            border: 2px solid var(--border); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+            background: #000;
+        }
+        .video-container video { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover;
+        }
+
+        /* Screenshots */
+        .screenshots { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0 30px; scroll-snap-type: x mandatory; }
+        .screenshots::-webkit-scrollbar { height: 5px; }
+        .screenshots::-webkit-scrollbar-thumb { background: var(--sukuna); border-radius: 5px; }
+        .screenshots img { 
+            width: 200px; /* Lebih kecil di HP */
+            border-radius: 15px; border: 1px solid var(--border); 
+            scroll-snap-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
+        }
+
+        /* Footer */
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 11px; background: var(--bg); position: relative; z-index: 5; }
+        footer span { color: #fff; font-weight: bold; text-shadow: 0 0 10px var(--gojo); }
+
+        /* =========================================
+           MEDIA QUERY UNTUK LAYAR LEBIH BESAR (TABLET/DESKTOP)
+        ========================================= */
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 50px; }
+            .glass-panel { padding: 50px 40px; max-width: 600px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .video-container { max-width: 400px; } /* Video tidak terlalu besar di desktop */
+            .screenshots img { width: 260px; }
+            .nav-brand { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-brand">lvnderrOS</div>
+        <a href="#download" class="nav-btn">Download APK</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="aura-gojo"></div>
         <div class="aura-sukuna"></div>
 
