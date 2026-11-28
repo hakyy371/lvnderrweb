@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>lvnderrOS Optimize - Beyond Limits</title>
     
-    <!-- SEO & Open Graph (Tampilan saat link di-share) -->
+    <!-- SEO & Open Graph -->
     <meta name="description" content="Unleash the ultimate performance of your Android device. Experience seamless gaming with Shizuku-powered optimization.">
     <meta property="og:title" content="lvnderrOS Optimize - Beyond Limits">
     <meta property="og:description" content="Tingkatkan performa game Android kamu tanpa Root. Powered by Shizuku.">
@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://hakyya371.github.io/">
     <meta property="og:type" content="website">
     
-    <!-- Favicon Kustom (Ikon Petir di Tab Browser) -->
+    <!-- Favicon Kustom -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,10 +37,9 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html { scroll-behavior: smooth; }
 
-        /* Custom Scrollbar untuk PC */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gojo), var(--sukuna)); border-radius: 10px; }
@@ -55,7 +54,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 1. SCROLL PROGRESS BAR */
+        /* SCROLL PROGRESS BAR */
         #progress-bar {
             position: fixed; top: 0; left: 0; height: 3px; 
             background: linear-gradient(90deg, var(--gojo), var(--sukuna));
@@ -112,27 +111,16 @@
         }
 
         .aura-gojo {
-            position: absolute;
-            top: 5%; left: -20%;
-            width: 80vw; height: 60vh;
+            position: absolute; top: 5%; left: -20%; width: 80vw; height: 60vh;
             background: radial-gradient(circle, var(--gojo) 0%, transparent 60%);
-            filter: blur(50px);
-            mix-blend-mode: screen;
-            z-index: 2;
-            animation: fireBlue 0.15s infinite alternate;
-            pointer-events: none;
+            filter: blur(50px); mix-blend-mode: screen; z-index: 2;
+            animation: fireBlue 0.15s infinite alternate; pointer-events: none;
         }
-
         .aura-sukuna {
-            position: absolute;
-            bottom: 5%; right: -20%;
-            width: 80vw; height: 60vh;
+            position: absolute; bottom: 5%; right: -20%; width: 80vw; height: 60vh;
             background: radial-gradient(circle, var(--sukuna) 0%, transparent 60%);
-            filter: blur(50px);
-            mix-blend-mode: screen;
-            z-index: 2;
-            animation: fireRed 0.2s infinite alternate;
-            pointer-events: none;
+            filter: blur(50px); mix-blend-mode: screen; z-index: 2;
+            animation: fireRed 0.2s infinite alternate; pointer-events: none;
         }
 
         @keyframes fireBlue {
@@ -147,26 +135,23 @@
         .glass-panel {
             position: relative; z-index: 3;
             background: rgba(15, 10, 25, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 30px 20px;
+            border-radius: 20px; padding: 30px 20px;
             width: 100%; max-width: 400px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
             display: flex; flex-direction: column; align-items: center;
         }
 
         .hero h1 {
-            font-family: 'Orbitron', sans-serif; font-size: 32px;
-            font-weight: 900; line-height: 1.2;
+            font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 900; line-height: 1.2;
             background: linear-gradient(90deg, var(--gojo), #fff, var(--sukuna));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 12px; letter-spacing: 1px;
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
         }
 
-        /* UI Rating Super Nyata (Social Proof) */
+        /* UI Rating Super Nyata */
         .social-proof {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             margin-bottom: 20px; background: rgba(0,0,0,0.5); 
@@ -201,6 +186,7 @@
 
         .hero p { color: #ddd; font-size: 13px; margin-bottom: 25px; font-weight: 400; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
         
+        /* SATU-SATUNYA TOMBOL DOWNLOAD UTAMA */
         .download-btn {
             display: inline-flex; align-items: center; gap: 8px;
             background: linear-gradient(135deg, #1a0b2e, #0f0518);
@@ -224,8 +210,7 @@
 
         .container { 
             max-width: 1000px; margin: auto; padding: 40px 20px; 
-            position: relative; z-index: 5; 
-            background-color: var(--bg);
+            position: relative; z-index: 5; background-color: var(--bg);
             background-image: 
                 linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
@@ -244,10 +229,8 @@
         .card::before {
             content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
             background: linear-gradient(45deg, var(--gojo), var(--sukuna), var(--gojo));
-            background-size: 300% 300%;
-            border-radius: 22px; z-index: -1;
-            animation: borderShift 3s linear infinite;
-            opacity: 0; transition: opacity 0.3s;
+            background-size: 300% 300%; border-radius: 22px; z-index: -1;
+            animation: borderShift 3s linear infinite; opacity: 0; transition: opacity 0.3s;
         }
         .card:hover::before { opacity: 1; }
         .card:hover { transform: translateY(-5px); }
@@ -270,27 +253,16 @@
 
         /* Video Container */
         .video-container {
-            position: relative; 
-            width: 100%; 
-            max-width: 100%;
-            aspect-ratio: 9 / 16; 
-            margin: auto;
-            border-radius: 15px; 
-            overflow: hidden;
-            border: 2px solid var(--border); 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
-            background: #000;
+            position: relative; width: 100%; max-width: 100%;
+            aspect-ratio: 9 / 16; margin: auto; border-radius: 15px; overflow: hidden;
+            border: 2px solid var(--border); box-shadow: 0 5px 20px rgba(0,0,0,0.8); background: #000;
         }
         .video-container video { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: contain;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;
         }
 
         /* How To Use Steps */
-        .steps-container {
-            display: grid; grid-template-columns: 1fr; gap: 15px;
-            margin-top: 25px;
-        }
+        .steps-container { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 25px; }
         .step {
             background: rgba(255,255,255,0.03); padding: 15px;
             border-radius: 12px; border: 1px solid var(--border);
@@ -309,10 +281,8 @@
         .screenshots::-webkit-scrollbar { height: 5px; }
         .screenshots::-webkit-scrollbar-thumb { background: var(--sukuna); border-radius: 5px; }
         .screenshots img { 
-            width: 200px;
-            border-radius: 15px; border: 1px solid var(--border); 
-            scroll-snap-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
-            transition: 0.3s;
+            width: 200px; border-radius: 15px; border: 1px solid var(--border); 
+            scroll-snap-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); transition: 0.3s;
         }
         .screenshots img:hover { border-color: var(--sukuna); box-shadow: 0 0 15px var(--sukuna-glow); transform: scale(1.02); }
 
@@ -348,39 +318,30 @@
         /* FAQ Accordion */
         .faq-item {
             background: var(--panel); border: 1px solid var(--border);
-            border-radius: 12px; margin-bottom: 10px; overflow: hidden;
-            transition: 0.3s;
+            border-radius: 12px; margin-bottom: 10px; overflow: hidden; transition: 0.3s;
         }
         .faq-item:hover { border-color: var(--gojo); }
         .faq-item summary {
             padding: 15px 20px; cursor: pointer; font-weight: 600; font-size: 14px;
-            list-style: none; display: flex; justify-content: space-between; align-items: center;
-            color: #fff;
+            list-style: none; display: flex; justify-content: space-between; align-items: center; color: #fff;
         }
         .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after {
-            content: '+'; font-size: 20px; color: var(--gojo); transition: 0.3s;
-        }
-        .faq-item[open] summary::after {
-            transform: rotate(45deg); color: var(--sukuna);
-        }
+        .faq-item summary::after { content: '+'; font-size: 20px; color: var(--gojo); transition: 0.3s; }
+        .faq-item[open] summary::after { transform: rotate(45deg); color: var(--sukuna); }
         .faq-content {
             padding: 0 20px 15px; font-size: 13px; color: var(--muted);
             border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;
         }
 
-        /* FLOATING STICKY BUTTON (Mobile) */
+        /* FLOATING STICKY BUTTON */
         .sticky-download {
-            display: none;
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
             width: 90%; max-width: 350px; z-index: 1000;
             background: rgba(3, 1, 5, 0.9); backdrop-filter: blur(10px);
             padding: 10px; border-radius: 50px; border: 1px solid var(--border);
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
-        .sticky-download .download-btn {
-            width: 100%; justify-content: center; padding: 12px; font-size: 15px;
-        }
+        .sticky-download .download-btn { width: 100%; justify-content: center; padding: 12px; font-size: 15px; }
 
         /* BACK TO TOP BUTTON */
         #backToTop {
@@ -398,15 +359,8 @@
         footer span { color: #fff; font-weight: bold; text-shadow: 0 0 10px var(--gojo); }
 
         /* Animasi Fade In */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         @media (min-width: 768px) {
             .hero h1 { font-size: 50px; }
@@ -426,13 +380,13 @@
 </head>
 <body>
 
-    <!-- 1. SCROLL PROGRESS BAR -->
+    <!-- SCROLL PROGRESS BAR -->
     <div id="progress-bar"></div>
 
     <!-- Navbar -->
     <nav>
         <div class="nav-brand">lvnderrOS</div>
-        <a href="#download" class="nav-btn">Download APK</a>
+        <a href="#features" class="nav-btn">Features</a>
     </nav>
 
     <!-- Hero Section -->
@@ -443,7 +397,7 @@
         <div class="glass-panel">
             <h1>lvnderrOS Optimize</h1>
             
-            <!-- Social Proof (Nyata) -->
+            <!-- Social Proof -->
             <div class="social-proof">
                 <div class="avatars">
                     <div class="avatar a1">R</div>
@@ -465,15 +419,16 @@
 
             <p>Unleash the ultimate performance of your Android device. Experience seamless gaming with Shizuku-powered optimization.</p>
             
-            <a href="#download" class="download-btn">
+            <!-- SATU-SATUNYA TOMBOL DOWNLOAD -->
+            <a href="https://www.mediafire.com/file/xgys1nnnsl6dsvn/lvnderr.apk/file" class="download-btn" target="_blank">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download Now
+                Download APK
             </a>
         </div>
     </section>
 
     <!-- Fitur -->
-    <div class="container reveal">
+    <div class="container reveal" id="features">
         <h2 class="section-title">Powerful Features</h2>
         <div class="grid">
             <div class="card">
@@ -557,7 +512,7 @@
     </div>
 
     <!-- DEVELOPER SECTION -->
-    <div class="container reveal" style="padding-bottom: 20px;">
+    <div class="container reveal" style="padding-bottom: 40px;">
         <h2 class="section-title">Meet The Developer</h2>
         <div class="dev-card">
             <div class="dev-avatar">H</div>
@@ -572,26 +527,16 @@
         </div>
     </div>
 
-    <!-- Download Section -->
-    <div class="container reveal" id="download" style="text-align: center; padding: 40px 20px 60px;">
-        <h2 class="section-title">Ready to Optimize?</h2>
-        <p style="color: var(--muted); margin-bottom: 25px; font-size: 13px;">Dapatkan versi terbaru lvnderrOS Optimize sekarang juga.</p>
-        
-        <a href="https://www.mediafire.com/file/xgys1nnnsl6dsvn/lvnderr.apk/file" class="download-btn" style="font-size: 18px; padding: 18px 50px;" target="_blank">
-            Download APK
-        </a>
-    </div>
-
     <!-- Footer -->
     <footer>
         <p>© 2026 <span>lvnderrOS</span>. Built by HKYY LAVENDERR.</p>
     </footer>
 
-    <!-- FLOATING STICKY DOWNLOAD (Hanya muncul di HP) -->
+    <!-- FLOATING STICKY DOWNLOAD (Hanya Muncul di HP saat discroll) -->
     <div class="sticky-download">
-        <a href="#download" class="download-btn">
+        <a href="https://www.mediafire.com/file/xgys1nnnsl6dsvn/lvnderr.apk/file" class="download-btn" target="_blank">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Download APK Now
+            Download APK
         </a>
     </div>
 
